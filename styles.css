@@ -1,0 +1,503 @@
+/* General Setup */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif;
+    user-select: none;
+}
+
+body {
+    background-color: #f0f8ff;
+    overflow: hidden; /* No scroll for game */
+}
+
+.hidden {
+    display: none !important;
+}
+
+.screen {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Setup Screen */
+#setup-screen {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+}
+
+.setup-container {
+    background: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 800px;
+    width: 90%;
+}
+
+.setup-container h1 {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.setup-container h2 {
+    font-size: 1.5rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.teams-setup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.team-input-box {
+    flex: 1;
+    padding: 1.5rem;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.red-theme {
+    background-color: #ffeaea;
+    border: 3px solid #ff4757;
+}
+
+.blue-theme {
+    background-color: #eaf4ff;
+    border: 3px solid #1e90ff;
+}
+
+.timer-theme {
+    background-color: #fff3e0;
+    border: 3px solid #ffa502;
+    padding: 1rem;
+    max-width: 200px;
+}
+
+.red-theme label { color: #ff4757; }
+.blue-theme label { color: #1e90ff; }
+.timer-theme label { color: #ffa502; }
+
+.team-input-box label {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.team-input-box input {
+    padding: 10px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.vs-text {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #555;
+    margin: 0 20px;
+}
+
+.start-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.bounce-btn {
+    background-color: #ffd32a;
+    color: #333;
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 6px 0 #d4af37;
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.bounce-btn:active {
+    transform: translateY(6px);
+    box-shadow: 0 0px 0 #d4af37;
+}
+
+/* Game Layout */
+.game-layout {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+/* Side Panels */
+.team-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.red-panel {
+    background-color: #ff4757;
+    color: white;
+}
+
+.blue-panel {
+    background-color: #1e90ff;
+    color: white;
+}
+
+.team-panel h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.score-display {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    background: rgba(255,255,255,0.3);
+    padding: 5px 15px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+}
+
+.question-box {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+    width: 90%;
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+}
+
+.question-text {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.answer-display {
+    background: white;
+    color: #333;
+    font-size: 3rem;
+    border-radius: 10px;
+    padding: 10px 20px;
+    min-height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 4px solid #333;
+}
+
+.error-shake {
+    animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+    background-color: #ffb3b3 !important;
+}
+
+@keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+/* Keypad */
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    width: 100%;
+    max-width: 250px;
+}
+
+.key-btn {
+    background: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+    min-height: 60px;
+    cursor: pointer;
+    box-shadow: 0 5px 0 rgba(0,0,0,0.2);
+    transition: transform 0.1s, background-color 0.1s, box-shadow 0.1s;
+}
+
+.key-btn:active {
+    transform: translateY(5px) scale(0.95);
+    box-shadow: 0 0 0 rgba(0,0,0,0.2);
+    background-color: #e0e0e0;
+}
+
+.key-zero {
+    grid-column: span 2;
+}
+
+.key-del {
+    background: #ff7f50;
+    color: white;
+}
+
+.key-submit {
+    grid-column: span 3;
+    background: #2ed573;
+    color: white;
+    font-size: 1.2rem;
+    padding: 12px 0;
+}
+
+/* Arena Panel */
+.arena-panel {
+    flex: 2; /* takes more space */
+    position: relative;
+    border-left: 8px solid #333;
+    border-right: 8px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #e0f7fa; /* Simple background */
+}
+
+.arena-background {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center bottom;
+    z-index: 1;
+}
+
+.arena-header {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 5;
+    gap: 15px;
+}
+
+.timer-display {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #333;
+    background: white;
+    padding: 5px 30px;
+    border-radius: 15px;
+    border: 4px solid #333;
+    box-shadow: 0 5px 0 rgba(0,0,0,0.1);
+}
+
+.health-bars {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.hp-box {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: white;
+    padding: 5px 15px;
+    border-radius: 10px;
+    border: 3px solid #333;
+    box-shadow: 0 3px 0 rgba(0,0,0,0.1);
+}
+.red-hp { color: #ff4757; }
+.blue-hp { color: #1e90ff; }
+
+/* The tug container holds the image. It moves left/right based on score */
+.tug-container {
+    position: absolute; /* Changed to absolute to position properly */
+    top: 0;
+    left: -25%; /* Centers the 150% width container */
+    width: 150%; /* wider than arena so it can slide */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: transform 0.3s ease-out;
+}
+
+/* CSS Tug of War Scene */
+.css-scene {
+    position: relative;
+    width: 400px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+}
+
+.bean {
+    width: 70px;
+    height: 90px;
+    border-radius: 35px 35px 20px 20px;
+    position: relative;
+    z-index: 10;
+    transform-origin: bottom center;
+    border: 4px solid #333;
+    box-shadow: inset -5px -5px 10px rgba(0,0,0,0.2);
+}
+
+.red-bean { 
+    background-color: #ff4757; 
+    animation: bodyPullRed 0.6s infinite alternate ease-in-out;
+}
+
+.blue-bean { 
+    background-color: #1e90ff; 
+    animation: bodyPullBlue 0.6s infinite alternate ease-in-out;
+}
+
+.glass {
+    width: 40px;
+    height: 25px;
+    background: #87ceeb;
+    border: 4px solid #333;
+    border-radius: 12px;
+    position: absolute;
+    top: 20px;
+    box-shadow: inset 2px 2px 5px rgba(255,255,255,0.8);
+}
+.red-bean .glass { right: -5px; }
+.blue-bean .glass { left: -5px; }
+
+.leg {
+    width: 20px;
+    height: 30px;
+    border-radius: 10px;
+    position: absolute;
+    bottom: -20px;
+    border: 4px solid #333;
+    z-index: -1;
+}
+.red-bean .leg { background-color: #ff4757; }
+.blue-bean .leg { background-color: #1e90ff; }
+
+.left-leg { left: 10px; }
+.right-leg { right: 15px; }
+
+/* Red's arm points right */
+.red-arm {
+    width: 50px;
+    height: 18px;
+    border-radius: 10px;
+    border: 4px solid #333;
+    position: absolute;
+    top: 55px;
+    right: -30px;
+    background-color: #ff4757;
+    transform-origin: left center;
+    z-index: 15;
+    animation: armPullRed 0.6s infinite alternate ease-in-out;
+}
+
+/* Blue's arm points left */
+.blue-arm {
+    width: 50px;
+    height: 18px;
+    border-radius: 10px;
+    border: 4px solid #333;
+    position: absolute;
+    top: 55px;
+    left: -30px;
+    background-color: #1e90ff;
+    transform-origin: right center;
+    z-index: 15;
+    animation: armPullBlue 0.6s infinite alternate ease-in-out;
+}
+
+.css-rope {
+    width: 250px;
+    height: 16px;
+    background-color: #d35400;
+    border: 3px solid #333;
+    border-radius: 8px;
+    position: absolute;
+    z-index: 5;
+    top: 105px;
+    left: 75px;
+    animation: ropeShake 0.6s infinite alternate ease-in-out;
+}
+
+.rope-knot {
+    width: 20px;
+    height: 30px;
+    background-color: #e74c3c;
+    border: 3px solid #333;
+    border-radius: 5px;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@keyframes bodyPullRed {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-15deg) translateX(-5px); }
+}
+
+@keyframes bodyPullBlue {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(15deg) translateX(5px); }
+}
+
+@keyframes armPullRed {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-15deg); }
+}
+
+@keyframes armPullBlue {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(15deg); }
+}
+
+@keyframes ropeShake {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-2px); } 
+}
+
+/* Winner Overlay */
+#winner-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#winner-text {
+    font-size: 5rem;
+    color: #ffd32a;
+    margin-bottom: 30px;
+    text-shadow: 0 0 20px rgba(255, 211, 42, 0.8);
+    text-align: center;
+}
+
+.winner-red { color: #ff4757 !important; }
+.winner-blue { color: #1e90ff !important; }

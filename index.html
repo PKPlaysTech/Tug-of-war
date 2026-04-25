@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>Math Tug of War: Singapore Dollars</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Setup Screen -->
+    <div id="setup-screen" class="screen">
+        <div class="setup-container">
+            <h1>💰 Math Tug of War 💰</h1>
+            <h2>Singapore Dollars Edition</h2>
+            
+            <div class="teams-setup">
+                <div class="team-input-box red-theme">
+                    <label for="team1-name">Red Team Name</label>
+                    <input type="text" id="team1-name" placeholder="Enter Team 1" value="Team Red">
+                </div>
+                
+                <div class="vs-text">VS</div>
+                
+                <div class="team-input-box blue-theme">
+                    <label for="team2-name">Blue Team Name</label>
+                    <input type="text" id="team2-name" placeholder="Enter Team 2" value="Team Blue">
+                </div>
+            </div>
+            
+            <div class="start-row">
+                <div class="team-input-box timer-theme">
+                    <label for="time-limit">Time (Seconds)</label>
+                    <input type="number" id="time-limit" value="60" min="10" max="300">
+                </div>
+                <button id="start-btn" class="bounce-btn">START GAME</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen hidden">
+        <div class="game-layout">
+            
+            <!-- Team 1 (Left Box) -->
+            <div class="team-panel red-panel">
+                <h2 id="display-team1-name">Team Red</h2>
+                <div class="score-display">Score: <span id="t1-score">0</span></div>
+                <div class="question-box">
+                    <div id="t1-question" class="question-text"></div>
+                    <div class="answer-display">
+                        <span class="currency">$</span>
+                        <span id="t1-answer"></span>
+                    </div>
+                </div>
+                
+                <div class="keypad" id="t1-keypad">
+                    <!-- Buttons injected via JS -->
+                </div>
+            </div>
+            
+            <!-- Middle Box (Tug of War Arena) -->
+            <div class="arena-panel">
+                <div class="arena-header">
+                    <div class="timer-display" id="timer-display">60</div>
+                    <div class="health-bars">
+                        <div class="hp-box red-hp">❤️ <span id="t1-hp">5</span></div>
+                        <div class="hp-box blue-hp">❤️ <span id="t2-hp">5</span></div>
+                    </div>
+                </div>
+                <div class="arena-background">
+                    <div class="tug-container" id="tug-container">
+                        <div class="css-scene">
+                            <!-- Red Bean -->
+                            <div class="bean red-bean">
+                                <div class="glass"></div>
+                                <div class="red-arm"></div>
+                                <div class="leg left-leg"></div>
+                                <div class="leg right-leg"></div>
+                            </div>
+                            
+                            <!-- Rope -->
+                            <div class="css-rope">
+                                <div class="rope-knot"></div>
+                            </div>
+                            
+                            <!-- Blue Bean -->
+                            <div class="bean blue-bean">
+                                <div class="glass"></div>
+                                <div class="blue-arm"></div>
+                                <div class="leg left-leg"></div>
+                                <div class="leg right-leg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Win overlay -->
+                <div id="winner-overlay" class="hidden">
+                    <h1 id="winner-text">TEAM WINS!</h1>
+                    <button id="play-again-btn" class="bounce-btn">PLAY AGAIN</button>
+                </div>
+            </div>
+            
+            <!-- Team 2 (Right Box) -->
+            <div class="team-panel blue-panel">
+                <h2 id="display-team2-name">Team Blue</h2>
+                <div class="score-display">Score: <span id="t2-score">0</span></div>
+                <div class="question-box">
+                    <div id="t2-question" class="question-text"></div>
+                    <div class="answer-display">
+                        <span class="currency">$</span>
+                        <span id="t2-answer"></span>
+                    </div>
+                </div>
+                
+                <div class="keypad" id="t2-keypad">
+                    <!-- Buttons injected via JS -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
