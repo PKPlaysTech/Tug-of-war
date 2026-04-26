@@ -501,3 +501,21 @@ body {
 #winner-overlay {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#winner-text {
+    font-size: 5rem;
+    color: #ffd32a;
+    margin-bottom: 30px;
+    text-shadow: 0 0 20px rgba(255, 211, 42, 0.8);
+    text-align: center;
+}
+
+.winner-red { color: #ff4757 !important; }
+.winner-blue { color: #1e90ff !important; }
