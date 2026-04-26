@@ -5,6 +5,7 @@ const WINNING_SCORE = 5; // Win by leading by 5 points
 
 let timerInterval = null;
 let timeRemaining = 60;
+let isGameOver = false;
 
 // Elements
 const setupScreen = document.getElementById('setup-screen');
@@ -145,6 +146,7 @@ function setQuestion(teamId) {
 }
 
 function checkAnswer(teamId) {
+    if (isGameOver) return;
     const state = teamId === 1 ? t1State : t2State;
     const displayElement = teamId === 1 ? t1AnswerDisplay.parentElement : t2AnswerDisplay.parentElement;
     
@@ -222,6 +224,7 @@ function updateTimer() {
 }
 
 function endGameOnTime() {
+    isGameOver = true;
     clearInterval(timerInterval);
     winnerOverlay.classList.remove('hidden');
     
@@ -238,6 +241,7 @@ function endGameOnTime() {
 }
 
 function endGame(winningTeamId) {
+    isGameOver = true;
     clearInterval(timerInterval);
     winnerOverlay.classList.remove('hidden');
     if (winningTeamId === 1) {
@@ -250,6 +254,7 @@ function endGame(winningTeamId) {
 }
 
 function initGame() {
+    isGameOver = false;
     setupScreen.classList.add('hidden');
     gameScreen.classList.remove('hidden');
     winnerOverlay.classList.add('hidden');
@@ -275,8 +280,3 @@ function initGame() {
     setQuestion(2);
 }
 
-startBtn.addEventListener('click', initGame);
-playAgainBtn.addEventListener('click', () => {
-    winnerOverlay.classList.add('hidden');
-    initGame();
-});
