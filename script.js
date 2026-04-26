@@ -292,7 +292,7 @@ function resizeApp() {
     if (!app) return;
     // Base size is 1200x800, scale it down to fit the window with a 2% margin
     const scale = Math.min(window.innerWidth / 1200, window.innerHeight / 800) * 0.98;
-    app.style.transform = `translate(-50%, -50%) scale(${scale})`;
+    app.style.transform = `scale(${scale})`;
 }
 
 window.addEventListener('resize', resizeApp);
