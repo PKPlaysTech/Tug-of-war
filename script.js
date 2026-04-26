@@ -280,3 +280,21 @@ function initGame() {
     setQuestion(2);
 }
 
+startBtn.addEventListener('click', initGame);
+playAgainBtn.addEventListener('click', () => {
+    winnerOverlay.classList.add('hidden');
+    initGame();
+});
+
+// Auto-scale to fit screen
+function resizeApp() {
+    const app = document.getElementById('app-container');
+    if (!app) return;
+    // Base size is 1200x800, scale it down to fit the window with a 2% margin
+    const scale = Math.min(window.innerWidth / 1200, window.innerHeight / 800) * 0.98;
+    app.style.transform = `translate(-50%, -50%) scale(${scale})`;
+}
+
+window.addEventListener('resize', resizeApp);
+// Call once on load
+resizeApp();
